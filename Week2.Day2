@@ -1,0 +1,58 @@
+package week2.Day1;
+
+
+import org.apache.commons.math3.geometry.spherical.twod.Edge;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
+
+
+
+public class LaunchBrowser {
+	
+	//@SuppressWarnings("unused")
+	public static void main(String[] args) throws InterruptedException {
+		
+		//ChromeDriver driver;
+		
+		EdgeDriver driver = new EdgeDriver();
+		
+
+		
+		driver.manage().window().maximize();
+		
+		driver.navigate().to("http://leaftaps.com/opentaps/control/login");
+		
+		driver.findElement(By.id("username")).sendKeys("DemoSalesManager");
+		driver.findElement(By.name("PASSWORD")).sendKeys("crmsfa");
+		driver.findElement(By.className("decorativeSubmit")).click();
+		driver.findElement(By.partialLinkText("CRM/SFA")).click();
+		driver.findElement(By.linkText("Leads")).click();
+		driver.findElement(By.linkText("Create Lead")).click();
+		driver.findElement(By.className("inputBox")).sendKeys("Mobiles");
+		driver.findElement(By.id("createLeadForm_firstName")).sendKeys("Samsung");
+		driver.findElement(By.id("createLeadForm_lastName")).sendKeys("Galaxy");
+		
+		WebElement SelectDropdown = driver.findElement(By.id("createLeadForm_dataSourceId"));
+		Select Options = new Select (SelectDropdown);
+		Options.selectByIndex(4);
+			
+		WebElement SelectDropdown1 = driver.findElement(By.id("createLeadForm_marketingCampaignId"));
+		Select Options1 = new Select (SelectDropdown1);
+		Options1.selectByVisibleText("Automobile");
+		
+		WebElement SelectDropdown3 = driver.findElement(By.name("ownershipEnumId"));
+		Select Options2 = new Select (SelectDropdown3);
+		Options2.selectByValue("OWN_SCORP");
+		driver.findElement(By.name("submitButton")).click();
+		Thread.sleep(3000);
+	    String currentpageTitle = driver.getTitle();
+		System.out.println(currentpageTitle);
+		driver.close();
+		
+	}
+
+}
