@@ -1,1 +1,74 @@
+package aBSTRACT;
 
+public interface Payments {
+	//Payments is interface with no Arguments 
+    void cashOnDelivery();
+	void upiPayments();
+    void cardPayments();
+    void internetBanking();
+
+}
+-------------------------------------------
+package aBSTRACT;
+
+public abstract class canaraBank implements Payments{
+	
+	//Assigning the data types and print the data types.
+	
+	
+		void recordPaymentDetails(String paymentType, double Amount) {
+			
+			
+			System.out.println("paymentType : " + paymentType );
+			System.out.println("Amount :" + Amount );
+			System.out.println("PAYMENT SUCCESSFULLY PAID");
+			
+
+	
+}}
+----------------------------------
+
+package aBSTRACT;
+
+public class Amazon extends canaraBank{
+	
+	//concrete class using extends link the concrete class Amazon and canarabank and payments
+	
+
+	@Override
+	public void cashOnDelivery() {
+	System.out.println("Processing COD");
+	recordPaymentDetails("CashOnDelivery",500.0);
+	
+	}
+
+	@Override
+	public void upiPayments() {
+		System.out.println("UpiPayments");
+		recordPaymentDetails("Gpay",700.0);
+		
+	}
+
+	@Override
+	public void cardPayments() {
+		System.out.println("CardPayments");
+		recordPaymentDetails("Citicard",1000.0);
+	}
+
+	@Override
+	public void internetBanking() {
+		System.out.println("InternetBanking");
+		recordPaymentDetails("IOB Card",2000.0);
+	}
+
+	public static void main(String[] args) {
+		
+		Amazon Canarabank = new Amazon();
+		Canarabank.cashOnDelivery();
+		Canarabank.upiPayments();
+		Canarabank.cardPayments();
+		Canarabank.internetBanking();
+	}
+	
+}
+------------------------------------
